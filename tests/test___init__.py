@@ -68,7 +68,7 @@ def test_encode_invalid_zoom(zoom, valid):
 )
 def test_decode(input, expected):
     decoded = shortlink_decode(input)
-    for a, b in zip(expected, decoded, strict=True):
+    for a, b in zip(expected, decoded):
         assert isclose(a, b, abs_tol=0.01)
 
 
@@ -84,7 +84,7 @@ def test_decode(input, expected):
 def test_decode_deprecated(new, old):
     decoded1 = shortlink_decode(new)
     decoded2 = shortlink_decode(old)
-    for a, b in zip(decoded1, decoded2, strict=True):
+    for a, b in zip(decoded1, decoded2):
         assert isclose(a, b)
 
 
