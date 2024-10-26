@@ -1,16 +1,15 @@
 [project]
-authors = [{name = "Kamil Monicz", email = "kamil@monicz.dev"}]
+authors = [{ name = "Kamil Monicz", email = "kamil@monicz.dev" }]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
   "License :: OSI Approved :: The Unlicense (Unlicense)",
   "Operating System :: OS Independent",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
   "Programming Language :: Rust",
@@ -21,10 +20,10 @@ classifiers = [
 dependencies = []
 description = "OpenStreetMap shortlink encoder and decoder"
 dynamic = ["version"]
-keywords = ["openstreetmap", "osm", "shortlink", "encoder", "decoder", "url"]
+keywords = ["decoder", "encoder", "openstreetmap", "osm", "shortlink", "url"]
 name = "osm-shortlink"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 
 [project.urls]
 Issues = "https://github.com/Zaczero/osm-shortlink/issues"
@@ -40,9 +39,7 @@ module-name = "osm_shortlink._lib"
 python-source = "python"
 
 [tool.uv]
-dev-dependencies = [
-  "pytest",
-]
+dev-dependencies = ["pytest"]
 
 [tool.ruff]
 exclude = [
@@ -57,72 +54,72 @@ exclude = [
 
 indent-width = 4
 line-length = 120
-target-version = "py313"
+target-version = "py39"
 
 [tool.ruff.lint]
 # custom + https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
 ignore = [
-  "B017", # assert-raises-exception
-  "TRY003", # raise-vanilla-args
-  "S101", # assert
-  "PT011", # pytest-raises-too-broad
-  "PYI021", # docstring-in-stub
-  "W191", # tab-indentation
-  "E111", # indentation-with-invalid-multiple
-  "E114", # indentation-with-invalid-multiple-comment
-  "E117", # over-indented
-  "E501", # line-too-long
-  "D206", # indent-with-spaces
-  "D300", # triple-single-quotes
-  "Q000", # bad-quotes-inline-string
-  "Q001", # bad-quotes-multiline-string
-  "Q002", # bad-quotes-docstring
-  "Q003", # avoidable-escaped-quote
+  "B017",   # assert-raises-exception
   "COM812", # missing-trailing-comma
   "COM819", # prohibited-trailing-comma
+  "D206",   # indent-with-spaces
+  "D300",   # triple-single-quotes
+  "E111",   # indentation-with-invalid-multiple
+  "E114",   # indentation-with-invalid-multiple-comment
+  "E117",   # over-indented
+  "E501",   # line-too-long
   "ISC001", # single-line-implicit-string-concatenation
   "ISC002", # multi-line-implicit-string-concatenation
+  "PT011",  # pytest-raises-too-broad
+  "PYI021", # docstring-in-stub
+  "Q000",   # bad-quotes-inline-string
+  "Q001",   # bad-quotes-multiline-string
+  "Q002",   # bad-quotes-docstring
+  "Q003",   # avoidable-escaped-quote
+  "S101",   # assert
+  "TRY003", # raise-vanilla-args
+  "W191",   # tab-indentation
 ]
 # see https://docs.astral.sh/ruff/rules/ for rules documentation
 select = [
-  "A", # flake8-builtins
-  "ARG", # flake8-unused-arguments
+  "A",     # flake8-builtins
+  "ARG",   # flake8-unused-arguments
   "ASYNC", # flake8-async
-  "B", # flake8-bugbear
-  "C4", # flake8-comprehensions
-  "DTZ", # flake8-datetimez
-  "E4", # pycodestyle
+  "B",     # flake8-bugbear
+  "C4",    # flake8-comprehensions
+  "DTZ",   # flake8-datetimez
+  "E4",    # pycodestyle
   "E7",
   "E9",
-  "F", # pyflakes
-  "FA", # flake8-future-annotations
-  "FLY", # flynt  # "FURB", # refurb
-  "G", # flake8-logging-format
-  "I", # isort
-  "ICN", # flake8-import-conventions
-  "INT", # flake8-gettext
-  "ISC", # flake8-implicit-str-concat
-  "LOG", # flake8-logging
-  "N", # pep8-naming
-  "NPY", # numpy
-  "Q", # flake8-quotes
-  "PERF", # perflint
-  "PIE", # flake8-pie
-  "PT", # flake8-pytest-style
-  "PTH", # flake8-use-pathlib
-  "PYI", # flake8-pyi
-  "RSE", # flake8-raise
-  "RUF", # ruff
-  "S", # flake8-bandit
-  "SIM", # flake8-simplify
-  "SLF", # flake8-self
-  "SLOT", # flake8-slots
-  "T10", # flake8-debugger
-  "TID", # flake8-tidy-imports
-  "TRY", # tryceratops
-  "UP", # pyupgrade
+  "F",     # pyflakes
+  "FA",    # flake8-future-annotations
+  "FLY",   # flynt  # "FURB", # refurb
+  "G",     # flake8-logging-format
+  "I",     # isort
+  "ICN",   # flake8-import-conventions
+  "INT",   # flake8-gettext
+  "ISC",   # flake8-implicit-str-concat
+  "LOG",   # flake8-logging
+  "N",     # pep8-naming
+  "NPY",   # numpy
+  "PERF",  # perflint
+  "PIE",   # flake8-pie
+  "PT",    # flake8-pytest-style
+  "PTH",   # flake8-use-pathlib
+  "PYI",   # flake8-pyi
+  "Q",     # flake8-quotes
+  "RSE",   # flake8-raise
+  "RUF",   # ruff
+  "S",     # flake8-bandit
+  "SIM",   # flake8-simplify
+  "SLF",   # flake8-self
+  "SLOT",  # flake8-slots
+  "T10",   # flake8-debugger
+  "TID",   # flake8-tidy-imports
+  "TRY",   # tryceratops
+  "UP",    # pyupgrade
   "W6",
-  "YTT", # flake8-2020
+  "YTT",   # flake8-2020
 ]
 
 # allow fix for all enabled rules (when `--fix`) is provided.
@@ -152,7 +149,7 @@ max-args = 10
 [tool.pyright]
 include = ["tests"]
 pythonPlatform = "All"
-pythonVersion = "3.13"
+pythonVersion = "3.9"
 strict = []
 
 [tool.pytest.ini_options]
