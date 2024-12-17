@@ -1,14 +1,14 @@
 [package]
 edition = "2021"
 name = "osm_shortlink"
-version = "1.1.0"
+version = "1.2.0"
 
 [lib]
 crate-type = ["cdylib"]
 name = "osm_shortlink"
 
 [dependencies]
-pyo3 = { version = "0.22.5", features = ["abi3-py39", "extension-module"] }
+pyo3 = { version = "0.23.3", features = ["abi3-py39", "extension-module"] }
 
 [profile.release]
 overflow-checks = true
