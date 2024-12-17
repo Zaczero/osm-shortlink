@@ -174,12 +174,6 @@ jobs:
           target: ${{ matrix.platform.target }}
           args: --release --out dist
           sccache: "true"
-      - name: Build free-threaded wheels
-        uses: PyO3/maturin-action@v1
-        with:
-          target: ${{ matrix.platform.target }}
-          args: --release --out dist -i 3.13t
-          sccache: "true"
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
@@ -193,7 +187,7 @@ jobs:
     strategy:
       matrix:
         platform:
-          - runner: macos-12
+          - runner: macos-13
             target: x86_64
           - runner: macos-14
             target: aarch64
