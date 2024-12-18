@@ -1,5 +1,6 @@
 # osm-shortlink
 
+![Python Free-Threaded Compatible](https://shields.monicz.dev/badge/Free--Threaded-Compatible-blue?logo=Python&logoColor=f0c74c)
 [![PyPI - Python Version](https://shields.monicz.dev/pypi/pyversions/osm-shortlink)](https://pypi.org/project/osm-shortlink)
 [![Liberapay Patrons](https://shields.monicz.dev/liberapay/patrons/Zaczero?logo=liberapay&label=Patrons)](https://liberapay.com/Zaczero/)
 [![GitHub Sponsors](https://shields.monicz.dev/github/sponsors/Zaczero?logo=github&label=Sponsors&color=%23db61a2)](https://github.com/sponsors/Zaczero)
@@ -8,7 +9,7 @@ Fast and correct OpenStreetMap shortlink encoder and decoder implementation in R
 
 ## Installation
 
-The recommended installation method is through the PyPI package manager. The project is implemented in Rust, offering excellent performance characteristics. Several pre-built binary wheels are available for Linux, macOS, and Windows, with support for both x64 and ARM architectures.
+Pre-built binary wheels are available for Linux, macOS, and Windows, with support for both x64 and ARM architectures.
 
 ```sh
 pip install osm-shortlink
