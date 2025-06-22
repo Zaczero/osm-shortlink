@@ -8,7 +8,7 @@ crate-type = ["cdylib"]
 name = "osm_shortlink"
 
 [dependencies]
-pyo3 = { version = "0.23.3", features = ["abi3-py39", "extension-module"] }
+pyo3 = { version = "0.25.1", features = ["abi3-py39", "extension-module"] }
 
 [profile.release]
 overflow-checks = true

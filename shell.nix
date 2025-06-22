@@ -1,8 +1,11 @@
-{ isDevelopment ? true }:
+{ }:
 
 let
   # Update packages with `nixpkgs-update` command
-  pkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/71a6392e367b08525ee710a93af2e80083b5b3e2.tar.gz") { };
+  pkgs =
+    import
+      (fetchTarball "https://github.com/NixOS/nixpkgs/archive/f72be405a10668b8b00937b452f2145244103ebc.tar.gz")
+      { };
 
   packages' = with pkgs; [
     coreutils
@@ -20,30 +23,32 @@ let
     '')
     (writeShellScriptBin "nixpkgs-update" ''
       hash=$(
-        curl --silent --location \
-        https://prometheus.nixos.org/api/v1/query \
-        -d "query=channel_revision{channel=\"nixpkgs-unstable\"}" | \
-        grep --only-matching --extended-regexp "[0-9a-f]{40}")
-      sed -i -E "s|/nixpkgs/archive/[0-9a-f]{40}\.tar\.gz|/nixpkgs/archive/$hash.tar.gz|" shell.nix
+        curl -sSL \
+          https://prometheus.nixos.org/api/v1/query \
+          -d 'query=channel_revision{channel="nixpkgs-unstable"}' \
+        grep -Eo "[0-9a-f]{40}")
+      sed -i "s|nixpkgs/archive/[0-9a-f]\\{40\\}|nixpkgs/archive/$hash|" shell.nix
       echo "Nixpkgs updated to $hash"
     '')
   ];
 
-  shell' = with pkgs; lib.optionalString isDevelopment ''
+  shell' = with pkgs; ''
+    export TZ=UTC
+    export NIX_SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt
+    export SSL_CERT_FILE=$NIX_SSL_CERT_FILE
+    export PYTHONNOUSERSITE=1
+    export PYTHONPATH=""
+
     current_python=$(readlink -e .venv/bin/python || echo "")
     current_python=''${current_python%/bin/*}
     [ "$current_python" != "${python313}" ] && rm -rf .venv/
 
     echo "Installing Python dependencies"
-    echo "${python313}/bin/python" > .python-version
+    export UV_PYTHON="${python313}/bin/python"
     NIX_ENFORCE_PURITY=0 uv sync --frozen
 
     echo "Activating Python virtual environment"
     source .venv/bin/activate
-
-    # Development environment variables
-    export PYTHONNOUSERSITE=1
-    export TZ=UTC
   '';
 in
 pkgs.mkShell {
