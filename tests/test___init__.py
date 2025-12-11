@@ -39,7 +39,9 @@ def test_encode_wrapping():
     ],
 )
 def test_encode_lat(lat, valid):
-    with nullcontext() if valid else pytest.raises(ValueError, match='Invalid latitude'):
+    with (
+        nullcontext() if valid else pytest.raises(ValueError, match='Invalid latitude')
+    ):
         shortlink_encode(0, lat, 5)
 
 

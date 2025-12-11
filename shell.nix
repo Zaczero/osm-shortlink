@@ -4,15 +4,17 @@ let
   # Update packages with `nixpkgs-update` command
   pkgs =
     import
-      (fetchTarball "https://github.com/NixOS/nixpkgs/archive/f72be405a10668b8b00937b452f2145244103ebc.tar.gz")
+      (fetchTarball "https://github.com/NixOS/nixpkgs/archive/677fbe97984e7af3175b6c121f3c39ee5c8d62c9.tar.gz")
       { };
 
   packages' = with pkgs; [
     coreutils
-    python313
-    uv
-    ruff
+    curl
+    jq
     maturin
+    python314
+    ruff
+    uv
     (lib.optional stdenv.isDarwin libiconv)
 
     (writeShellScriptBin "make" "maturin develop --uv")
@@ -23,10 +25,10 @@ let
     '')
     (writeShellScriptBin "nixpkgs-update" ''
       hash=$(
-        curl -sSL \
+        curl -fsSL \
           https://prometheus.nixos.org/api/v1/query \
           -d 'query=channel_revision{channel="nixpkgs-unstable"}' \
-        grep -Eo "[0-9a-f]{40}")
+        | jq -r ".data.result[0].metric.revision")
       sed -i "s|nixpkgs/archive/[0-9a-f]\\{40\\}|nixpkgs/archive/$hash|" shell.nix
       echo "Nixpkgs updated to $hash"
     '')
@@ -41,10 +43,11 @@ let
 
     current_python=$(readlink -e .venv/bin/python || echo "")
     current_python=''${current_python%/bin/*}
-    [ "$current_python" != "${python313}" ] && rm -rf .venv/
+    [ "$current_python" != "${python314}" ] && rm -rf .venv/
 
     echo "Installing Python dependencies"
-    export UV_PYTHON="${python313}/bin/python"
+    export UV_NATIVE_TLS=true
+    export UV_PYTHON="${python314}/bin/python"
     NIX_ENFORCE_PURITY=0 uv sync --frozen
 
     echo "Activating Python virtual environment"
